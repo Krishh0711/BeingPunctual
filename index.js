@@ -2,7 +2,15 @@ const express = require('express');
 const app = express();
 const port = 8000;
 const db = require('./config/mongoose');
+const saasMiddleware = require('node-sass-middleware');
 
+app.use(saasMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+ }));
 
 app.use(express.static('./assets'));
 app.use(express.urlencoded());
