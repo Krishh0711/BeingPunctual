@@ -11,6 +11,26 @@
        <h1>
          Being Punctual
        </h1>
+       <section>
+        <% if(locals.user){ %>
+          <form action="/users/add-habit" method="POST">
+            <input type="text" name="habit" placeholder="Enter Habit">
+            <input type="text" name="userId" value="<%= locals.user._id %>" hidden>
+            <input type="submit" value="Add habit">
+          </form>
+        <% } %>
+       </section>
+       <section>
+        <% if(userId){ %>
+          <ul>
+          <% for(habit of habits) {%>
+          <li>
+            <a href="/users/habit-detail/<%= habit._id %>"><%= habit.habit %></a>  
+          </li> 
+            <% } %>
+         </ul>
+        <% } %> 
+       </section>
     </body>
    
 </html>

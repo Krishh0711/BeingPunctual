@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="">
+
+<section>
+    <h1><%= habit.habit %></h1>
+    <%= habitDetail.length %>
+    <%= isPresent.length %>
+   <% if(isPresent.length==0){ %>
+      <form action="/users/insert-progress" method="POST">
+          <input type="text" name="habitId"  value="<%= habit._id %>" hidden>
+          <input type="text" name="userId" value="<%= locals.user.id %>" hidden>
+          <select name="status" id="status" required>
+          <option value="" disabled selected>Choose status</option>   
+          <option value="true">Done</option>
+          <option value="false">Not Done</option>
+         </select>
+         <input type="submit" value="submit">
+      </form>
+   <% }else{ %>
+     <h1>Heelooo</h1>
+   <% } %>
+</section>
+<section>
+  
+      <% 
+      let dateTrackDone = [];
+      let dateTrackNotDone = [];
+
+      for(habit of habitDetail) {
+         if(habit.status)
+         dateTrackDone.push(habit.createdAt.toDateString());
+         else
+         dateTrackNotDone.push(habit.createdAt.toDateString());
+       } 
+       %>
+       
+
+       <% for(var i=0;i<7;i++) {%>
+         <% let tempDate = moment().subtract(7-i-1, 'day').toDate().toDateString();
+            let arr = tempDate.split(" ");
+         %> 
+         <%= arr %>
+         <% if(dateTrackDone.includes(tempDate)){ %>
+           <h1>Hii</h1>  
+         <% }else if(dateTrackNotDone.includes(tempDate)){ %>
+            <h1>Hiiiiiii</h1>  
+          <% }else { %>
+            <h1>Hiiiiiiiiiiiiiiiii</h1>  
+         <% } %>
+
+     <% } %> 
+
+       
+   
+</section>
