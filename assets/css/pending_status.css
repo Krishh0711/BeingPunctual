@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0; }
+  body #status-conatiner {
+    width: 100%;
+    height: 100%; }
+    body #status-conatiner #week-container #calendar-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      height: 20vh;
+      width: 100%; }
+      body #status-conatiner #week-container #calendar-container #date-main-container {
+        display: flex;
+        flex-direction: column;
+        height: 9rem;
+        justify-content: space-around;
+        background-color: violet;
+        width: 9rem;
+        border: 1px dotted white;
+        text-align: center; }
+        body #status-conatiner #week-container #calendar-container #date-main-container #day-container {
+          height: 30%;
+          box-sizing: border-box;
+          border-bottom: 2px dotted wheat; }
+          body #status-conatiner #week-container #calendar-container #date-main-container #day-container p {
+            font-size: 1.2rem; }
+        body #status-conatiner #week-container #calendar-container #date-main-container #date-container {
+          height: 70%;
+          box-sizing: border-box; }
+          body #status-conatiner #week-container #calendar-container #date-main-container #date-container p {
+            font-size: 2rem; }
+
+.mark-done {
+  background-color: green; }
+
+.mark-undone {
+  background-color: red; }

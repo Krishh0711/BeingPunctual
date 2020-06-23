@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0; }
+  body #header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+    background-color: violet;
+    padding: 0 20px;
+    border-bottom: 2px solid white; }
+    body #header-container #logo-container {
+      font-size: 2rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      margin-top: 7px; }
+      body #header-container #logo-container a {
+        text-decoration: none; }
+        body #header-container #logo-container a h4 {
+          display: inline;
+          letter-spacing: .2rem;
+          color: white; }
+    body #header-container #link-container ul li {
+      text-decoration: none;
+      display: inline-block;
+      margin: 0 40px; }

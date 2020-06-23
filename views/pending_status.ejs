@@ -1,54 +1,81 @@
-<link rel="stylesheet" href="">
-
-<section>
-    <h1><%= habit.habit %></h1>
-    <%= habitDetail.length %>
-    <%= isPresent.length %>
-   <% if(isPresent.length==0){ %>
-      <form action="/users/insert-progress" method="POST">
-          <input type="text" name="habitId"  value="<%= habit._id %>" hidden>
-          <input type="text" name="userId" value="<%= locals.user.id %>" hidden>
-          <select name="status" id="status" required>
-          <option value="" disabled selected>Choose status</option>   
-          <option value="true">Done</option>
-          <option value="false">Not Done</option>
-         </select>
-         <input type="submit" value="submit">
-      </form>
-   <% }else{ %>
-     <h1>Heelooo</h1>
-   <% } %>
-</section>
-<section>
-  
-      <% 
-      let dateTrackDone = [];
-      let dateTrackNotDone = [];
-
-      for(habit of habitDetail) {
-         if(habit.status)
-         dateTrackDone.push(habit.createdAt.toDateString());
-         else
-         dateTrackNotDone.push(habit.createdAt.toDateString());
-       } 
-       %>
+<link rel="stylesheet" href="/css/pending_status.css">
+<body>
+   <div id="status-conatiner">
+      <section>
+         <h1><%= habit.habit %></h1>
+         <%= habitDetail.length %>
+         <%= isPresent.length %>
+        <% if(isPresent.length==0){ %>
+           <form action="/users/insert-progress" method="POST">
+               <input type="text" name="habitId"  value="<%= habit._id %>" hidden>
+               <input type="text" name="userId" value="<%= locals.user.id %>" hidden>
+               <select name="status" id="status" required>
+               <option value="" disabled selected>Choose status</option>   
+               <option value="true">Done</option>
+               <option value="false">Not Done</option>
+              </select>
+              <input type="submit" value="submit">
+           </form>
+        <% }else{ %>
+          <h1>Heelooo</h1>
+        <% } %>
+     </section>
+     <section id="week-container">
        
+           <% 
+           let dateTrackDone = [];
+           let dateTrackNotDone = [];
+     
+           for(habit of habitDetail) {
+              if(habit.status)
+              dateTrackDone.push(habit.createdAt.toDateString());
+              else
+              dateTrackNotDone.push(habit.createdAt.toDateString());
+            } 
+            %>
+            
+             <div id="calendar-container">
+               <% for(var i=0;i<7;i++) {%>
+                  <% let tempDate = moment().subtract(7-i-1, 'day').toDate().toDateString();
+                  let arr = tempDate.split(" ");
+               %>   
+               <!-- <%= arr %>  -->
+              <div id="date-main-container">
 
-       <% for(var i=0;i<7;i++) {%>
-         <% let tempDate = moment().subtract(7-i-1, 'day').toDate().toDateString();
-            let arr = tempDate.split(" ");
-         %> 
-         <%= arr %>
-         <% if(dateTrackDone.includes(tempDate)){ %>
-           <h1>Hii</h1>  
-         <% }else if(dateTrackNotDone.includes(tempDate)){ %>
-            <h1>Hiiiiiii</h1>  
-          <% }else { %>
-            <h1>Hiiiiiiiiiiiiiiiii</h1>  
-         <% } %>
+               <% if(dateTrackDone.includes(tempDate)){ %>
+                  <div id="day-container" class="mark-done">
+                     <p> <%= arr[0] %></p>
+                  </div>
+                  <div id="date-container" class="mark-done">
+                     <p> <%= arr[2] %></p>
+                  </div>
+                <% }else if(dateTrackNotDone.includes(tempDate)){ %>
+                  <div id="day-container" class="mark-undone">
+                     <p> <%= arr[0] %></p>
+                  </div>
+                  <div id="date-container" class="mark-undone">
+                     <p> <%= arr[2] %></p>
+                  </div>
+                 <% }else { %>
+                  <div id="day-container">
+                     <p> <%= arr[0] %></p>
+                  </div>
+                  <div id="date-container">
+                     <p> <%= arr[2] %></p>
+                  </div>
+                <% } %>
+              </div>
 
-     <% } %> 
-
-       
+              <% } %> 
+            </div>
+             
+               
+        
+             
+     
+            
+        
+     </section>
+   </div>
    
-</section>
+</body>
